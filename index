@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gleice Aguilar · Inovação Financiável</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-cream: #FDF9F3;
+      --color-blush: #F5E6DC;
+      --color-sage: #9CAF98;
+      --color-sage-dark: #7A9176;
+      --color-deep: #3D3D3D;
+      --color-muted: #555555;
+      --color-lavender: #E8E4F0;
+      --color-lavender-deep: #B8A9C9;
+
+      --radius-sm: 18px;
+      --radius-md: 28px;
+      --radius-lg: 40px;
+      --radius-xl: 56px;
+
+      --shadow-soft: 0 20px 60px rgba(61, 61, 61, 0.08);
+      --shadow-card: 0 14px 40px rgba(61, 61, 61, 0.06);
+      --shadow-hover: 0 24px 60px rgba(122, 145, 118, 0.18);
+
+      --container: 1180px;
+      --section-space: clamp(72px, 9vw, 120px);
+      --transition: 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(245, 230, 220, 0.7), transparent 30%),
+        radial-gradient(circle at top right, rgba(232, 228, 240, 0.85), transparent 34%),
+        var(--color-cream);
+      color: var(--color-deep);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(70px);
+      opacity: 0.45;
+    }
+
+    body::before {
+      top: 8%;
+      right: -80px;
+      width: 260px;
+      height: 260px;
+      background: rgba(184, 169, 201, 0.35);
+      animation: drift 16s ease-in-out infinite;
+    }
+
+    body::after {
+      left: -90px;
+      bottom: 15%;
+      width: 300px;
+      height: 300px;
+      background: rgba(156, 175, 152, 0.18);
+      animation: drift 18s ease-in-out infinite reverse;
+    }
+
+    h1, h2, h3, h4, .serif {
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: var(--section-space) 0;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(232, 228, 240, 0.8);
+      border: 1px solid rgba(184, 169, 201, 0.35);
+      color: var(--color-deep);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      backdrop-filter: blur(10px);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-sage-dark);
+      box-shadow: 0 0 0 6px rgba(122, 145, 118, 0.12);
+    }
+
+    .section-heading {
+      display: grid;
+      gap: 18px;
+      max-width: 740px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .section-heading p {
+      font-size: 1.08rem;
+      color: var(--color-muted);
+      max-width: 62ch;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      padding-top: 12px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(61, 61, 61, 0.08);
+      border-radius: 999px;
+      background: rgba(253, 249, 243, 0.74);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(61, 61, 61, 0.05);
+    }
+
+    .brand {
+      display: grid;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--color-muted);
+      font-size: 0.96rem;
+    }
+
+    .nav-links a {
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--color-deep); }
+
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-sage), var(--color-sage-dark));
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(122, 145, 118, 0.28);
+    }
+
+    .btn-primary:hover { box-shadow: 0 18px 40px rgba(122, 145, 118, 0.34); }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--color-deep);
+      border-color: rgba(61, 61, 61, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: #fff;
+      border-color: rgba(61, 61, 61, 0.18);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: start;
+      min-height: auto;
+      padding: 18px 0 36px;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+      max-width: 860px;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.9rem, 5.4vw, 4.8rem);
+      line-height: 0.96;
+      max-width: 12ch;
+    }
+
+    .hero-copy h1 em {
+      font-style: italic;
+      color: var(--color-sage-dark);
+      font-weight: 500;
+    }
+
+    .hero-lead {
+      font-size: 1.08rem;
+      color: var(--color-muted);
+      max-width: 50ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 2px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 0;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(61, 61, 61, 0.07);
+      font-size: 0.94rem;
+      color: var(--color-muted);
+      box-shadow: 0 10px 22px rgba(61, 61, 61, 0.04);
+    }
+
+    .trust-pill strong { color: var(--color-deep); }
+
+    .hero-aside {
+      position: relative;
+      min-height: auto;
+      display: grid;
+      align-items: start;
+      max-width: 680px;
+      width: 100%;
+      margin-top: 36px;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(4px);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb-one {
+      width: 140px;
+      height: 140px;
+      background: rgba(232, 228, 240, 0.9);
+      top: 14%;
+      left: 8%;
+    }
+
+    .orb-two {
+      width: 180px;
+      height: 180px;
+      background: rgba(245, 230, 220, 0.92);
+      right: 2%;
+      top: 10%;
+      animation-delay: -1.8s;
+    }
+
+    .orb-three {
+      width: 220px;
+      height: 220px;
+      background: rgba(156, 175, 152, 0.14);
+      bottom: 8%;
+      left: 18%;
+      animation-delay: -3.2s;
+    }
+
+    .hero-card {
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(61, 61, 61, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.7)),
+        linear-gradient(135deg, rgba(245,230,220,0.7), rgba(232,228,240,0.84));
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-soft);
+      min-height: auto;
+      display: grid;
+      gap: 22px;
+      align-content: start;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255,255,255,0.9), transparent 24%),
+        radial-gradient(circle at 78% 78%, rgba(184,169,201,0.2), transparent 22%);
+      pointer-events: none;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini-label {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      font-weight: 700;
+    }
+
+    .signal {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      font-size: 0.86rem;
+      color: var(--color-muted);
+      border: 1px solid rgba(61, 61, 61, 0.07);
+    }
+
+    .signal::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-sage-dark);
+      box-shadow: 0 0 0 4px rgba(122, 145, 118, 0.15);
+    }
+
+    .hero-card h2 {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.02;
+      max-width: 11ch;
+    }
+
+    .hero-card p {
+      position: relative;
+      z-index: 1;
+      color: var(--color-muted);
+      font-size: 1rem;
+      max-width: 34ch;
+    }
+
+    .authority-list {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .authority-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 16px 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(61, 61, 61, 0.06);
+      box-shadow: 0 10px 24px rgba(61, 61, 61, 0.04);
+    }
+
+    .authority-item::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-sage-dark);
+      box-shadow: 0 0 0 6px rgba(122, 145, 118, 0.10);
+      margin-top: 7px;
+      flex: 0 0 auto;
+    }
+
+    .authority-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--color-deep);
+      font-size: 1rem;
+      line-height: 1.35;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .authority-item span {
+      display: block;
+      color: var(--color-muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .authority-foot {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 18px 22px;
+      border-radius: 30px;
+      background: rgba(61, 61, 61, 0.92);
+      color: rgba(253, 249, 243, 0.8);
+    }
+
+    .authority-foot strong {
+      display: block;
+      color: var(--color-cream);
+      margin-bottom: 4px;
+      font-size: 1.02rem;
+    }
+
+    .authority-foot small {
+      display: block;
+      color: rgba(253, 249, 243, 0.72);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .section-shell {
+      border-radius: calc(var(--radius-xl) + 8px);
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(61, 61, 61, 0.06);
+      box-shadow: var(--shadow-soft);
+      padding: clamp(28px, 4vw, 44px);
+      backdrop-filter: blur(10px);
+    }
+
+    .problem-layout,
+    .method-layout,
+    .about-layout {
+      display: grid;
+      gap: 24px;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border-radius: var(--radius-md);
+      background: #fff;
+      border: 1px solid rgba(61, 61, 61, 0.05);
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(156, 175, 152, 0.22);
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto auto 0 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-sage), var(--color-lavender-deep));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+
+    .card:hover::after { transform: scaleX(1); }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, rgba(245, 230, 220, 0.9), rgba(232, 228, 240, 0.72));
+      color: var(--color-sage-dark);
+      font-size: 1.1rem;
+      font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .card p { color: var(--color-muted); }
+
+    .method-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .method-note {
+      max-width: 34ch;
+      padding: 18px 20px;
+      border-radius: 24px;
+      background: rgba(232, 228, 240, 0.56);
+      color: var(--color-deep);
+      border: 1px solid rgba(184, 169, 201, 0.24);
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .step-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 24px;
+      border-radius: var(--radius-md);
+      background: #fff;
+      border: 1px solid rgba(61, 61, 61, 0.05);
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .step-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .step-index {
+      width: 50px;
+      height: 50px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--color-sage), var(--color-sage-dark));
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      box-shadow: 0 12px 24px rgba(122, 145, 118, 0.2);
+    }
+
+    .step-copy h3 {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    .step-copy p {
+      color: var(--color-muted);
+      font-size: 0.98rem;
+    }
+
+    .about-panel {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .about-art,
+    .about-copy {
+      border-radius: var(--radius-xl);
+      padding: clamp(28px, 4vw, 42px);
+      min-height: 100%;
+    }
+
+    .about-art {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 28% 24%, rgba(255,255,255,0.85), transparent 22%),
+        linear-gradient(145deg, rgba(245,230,220,0.92), rgba(232,228,240,0.82));
+      border: 1px solid rgba(61, 61, 61, 0.05);
+      box-shadow: var(--shadow-card);
+      display: grid;
+      align-content: space-between;
+      gap: 30px;
+    }
+
+    .about-art::before,
+    .about-art::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .about-art::before {
+      width: 220px;
+      height: 220px;
+      background: rgba(255,255,255,0.42);
+      top: -80px;
+      right: -50px;
+    }
+
+    .about-art::after {
+      width: 160px;
+      height: 160px;
+      background: rgba(156, 175, 152, 0.16);
+      bottom: -40px;
+      left: -20px;
+    }
+
+    .monogram {
+      position: relative;
+      z-index: 1;
+      width: clamp(120px, 18vw, 160px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 38px;
+      background: rgba(255,255,255,0.56);
+      border: 1px solid rgba(61, 61, 61, 0.06);
+      box-shadow: 0 18px 40px rgba(61, 61, 61, 0.08);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.4rem, 6vw, 5rem);
+      color: var(--color-sage-dark);
+    }
+
+    .about-badges {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+    }
+
+    .about-badge {
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.64);
+      border: 1px solid rgba(61, 61, 61, 0.06);
+      font-size: 0.96rem;
+      color: var(--color-deep);
+    }
+
+    .about-copy {
+      background: #fff;
+      border: 1px solid rgba(61, 61, 61, 0.05);
+      box-shadow: var(--shadow-card);
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .about-copy h2 {
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      max-width: 11ch;
+    }
+
+    .about-copy p {
+      color: var(--color-muted);
+      font-size: 1rem;
+      max-width: 58ch;
+    }
+
+    .highlight-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 6px;
+    }
+
+    .highlight-tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(156, 175, 152, 0.2);
+      background: rgba(156, 175, 152, 0.08);
+      color: var(--color-deep);
+      font-size: 0.94rem;
+    }
+
+    .cta-box {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(34px, 6vw, 68px);
+      border-radius: calc(var(--radius-xl) + 8px);
+      background:
+        radial-gradient(circle at 10% 14%, rgba(184, 169, 201, 0.24), transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(156, 175, 152, 0.18), transparent 24%),
+        linear-gradient(135deg, #2f2f2f, #434343);
+      color: var(--color-cream);
+      box-shadow: 0 30px 80px rgba(61, 61, 61, 0.18);
+      display: grid;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      max-width: 11ch;
+      margin: 0 auto;
+    }
+
+    .cta-box p {
+      max-width: 56ch;
+      margin: 0 auto;
+      color: rgba(253, 249, 243, 0.8);
+      font-size: 1.08rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .btn-light {
+      background: #fff;
+      color: var(--color-deep);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.16);
+    }
+
+    .btn-light:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.22); }
+
+    .btn-dark-outline {
+      color: var(--color-cream);
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .btn-dark-outline:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      padding: 26px 0 42px;
+      color: var(--color-muted);
+      font-size: 0.94rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 720ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition-delay: var(--delay, 0ms);
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(12px, -18px, 0) scale(1.06); }
+    }
+
+    @media (max-width: 1080px) {
+      .about-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-aside {
+        min-height: auto;
+      }
+
+      .hero-card {
+        min-height: auto;
+      }
+
+      .problem-grid,
+      .method-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .navbar {
+        border-radius: 28px;
+        padding: 16px;
+        flex-wrap: wrap;
+      }
+
+      .nav-cta {
+        width: 100%;
+      }
+
+      .nav-cta .btn {
+        flex: 1;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 12px;
+      }
+
+      .hero-copy h1 {
+        max-width: 100%;
+      }
+
+      .authority-grid,
+      .problem-grid,
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .method-header,
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .authority-foot {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta-box {
+        text-align: left;
+      }
+
+      .cta-box h2,
+      .cta-box p {
+        margin-left: 0;
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+      }
+      [data-reveal] {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav-wrap">
+      <header class="navbar" data-reveal>
+        <div class="brand">
+          <a href="#top" class="brand-name">Gleice Aguilar</a>
+          <span class="brand-sub">Estratégia de inovação financiável</span>
+        </div>
+
+        <nav class="nav-links" aria-label="Navegação principal">
+          <a href="#desafios">Desafios</a>
+          <a href="#metodo">Método</a>
+          <a href="#sobre">Sobre</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn btn-secondary" href="#metodo">Ver estrutura</a>
+          <a class="btn btn-primary" href="https://wa.me/5567991173525" target="_blank" rel="noreferrer">Fale comigo</a>
+        </div>
+      </header>
+    </div>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-copy">
+          <span class="eyebrow" data-reveal>Estratégia, IA e fomento para projetos complexos</span>
+
+          <h1 data-reveal style="--delay: 80ms;">
+            Transformo <em>complexidade</em> em clareza estratégica.
+          </h1>
+
+          <p class="hero-lead" data-reveal style="--delay: 160ms;">
+            Estruturo narrativa, posicionamento e valor para projetos que precisam ser compreendidos com rapidez, consistência e força de decisão.
+          </p>
+
+          <div class="hero-actions" data-reveal style="--delay: 240ms;">
+            <a class="btn btn-primary" href="https://wa.me/5567991173525" target="_blank" rel="noreferrer">Agendar conversa</a>
+            <a class="btn btn-secondary" href="#sobre">Como atuo</a>
+          </div>
+
+          <div class="trust-row" data-reveal style="--delay: 320ms;">
+            <span class="trust-pill"><strong>+R$ 10 milhões</strong> viabilizados</span>
+            <span class="trust-pill"><strong>100+ projetos</strong> aprovados</span>
+            <span class="trust-pill"><strong>10+ anos</strong> de experiência</span>
+          </div>
+        </div>
+
+        <aside class="hero-aside" aria-label="Síntese visual de autoridade">
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+          <div class="orb orb-three"></div>
+
+          <div class="hero-card" data-reveal style="--delay: 140ms;">
+            <div class="card-top">
+              <span class="mini-label">Posicionamento</span>
+              <span class="signal">Atuação nacional</span>
+            </div>
+
+            <h2>Estratégia clara para projetos que precisam convencer.</h2>
+            <p>
+              Da estrutura da proposta à narrativa final, organizo o projeto para que ele seja claro, sólido e competitivo em contextos de avaliação e fomento.
+            </p>
+
+            <div class="authority-list">
+              <div class="authority-item">
+                <div>
+                  <strong>Clareza da proposta</strong>
+                  <span>Organizo a mensagem para que a solução seja entendida com rapidez.</span>
+                </div>
+              </div>
+              <div class="authority-item">
+                <div>
+                  <strong>Posicionamento</strong>
+                  <span>Estruturo o projeto para comunicar valor, consistência e diferencial.</span>
+                </div>
+              </div>
+              <div class="authority-item">
+                <div>
+                  <strong>Leitura de fomento</strong>
+                  <span>Trabalho com foco em aderência, maturidade da proposta e força de apresentação.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="authority-foot">
+              <div>
+                <strong>Mentoria e avaliação em inovação</strong>
+                <small>Atuação em programas, bancas e projetos de base científica e tecnológica.</small>
+              </div>
+              <small>Clareza, consistência e direção.</small>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="desafios">
+        <div class="section-shell problem-layout">
+          <div class="section-heading" data-reveal>
+            <span class="eyebrow">Onde bons projetos perdem força</span>
+            <h2>O problema raramente é a ideia. É como ela é apresentada.</h2>
+            <p>
+              Muitos projetos perdem força não por falta de qualidade, mas por comunicação confusa, prioridade mal definida e narrativa fraca para quem avalia ou financia.
+            </p>
+          </div>
+
+          <div class="problem-grid">
+            <article class="card" data-reveal style="--delay: 80ms;">
+              <div class="card-icon">01</div>
+              <h3>Proposta pouco clara</h3>
+              <p>Quando problema, solução e diferencial não estão claros, o projeto perde força logo no início.</p>
+            </article>
+
+            <article class="card" data-reveal style="--delay: 160ms;">
+              <div class="card-icon">02</div>
+              <h3>Valor pouco evidente</h3>
+              <p>Sem clareza sobre impacto, viabilidade e diferencial, o potencial do projeto fica oculto.</p>
+            </article>
+
+            <article class="card" data-reveal style="--delay: 240ms;">
+              <div class="card-icon">03</div>
+              <h3>Equipe mal apresentada</h3>
+              <p>A capacidade de execução existe, mas não aparece como prova concreta de confiança.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="metodo">
+        <div class="section-shell method-layout">
+          <div class="method-header" data-reveal>
+            <div class="section-heading" style="margin-bottom: 0;">
+              <span class="eyebrow">Como eu estruturo</span>
+              <h2>Um processo claro para organizar, fortalecer e posicionar o seu projeto.</h2>
+            </div>
+            <div class="method-note">
+              Não é sobre deixar o texto bonito. É sobre deixar o projeto claro, consistente e convincente.
+            </div>
+          </div>
+
+          <div class="method-grid">
+            <article class="step-card" data-reveal style="--delay: 80ms;">
+              <div class="step-index">1</div>
+              <div class="step-copy">
+                <h3>Diagnóstico</h3>
+                <p>Leitura crítica para identificar ruídos, fragilidades e pontos fortes que ainda não estão claros.</p>
+              </div>
+            </article>
+
+            <article class="step-card" data-reveal style="--delay: 160ms;">
+              <div class="step-index">2</div>
+              <div class="step-copy">
+                <h3>Estrutura da proposta</h3>
+                <p>Organização da lógica central: problema, solução, diferencial, execução e impacto.</p>
+              </div>
+            </article>
+
+            <article class="step-card" data-reveal style="--delay: 240ms;">
+              <div class="step-index">3</div>
+              <div class="step-copy">
+                <h3>Posicionamento</h3>
+                <p>Refino da mensagem para tornar o projeto mais claro, competitivo e seguro diante de avaliação.</p>
+              </div>
+            </article>
+
+            <article class="step-card" data-reveal style="--delay: 320ms;">
+              <div class="step-index">4</div>
+              <div class="step-copy">
+                <h3>Preparação final</h3>
+                <p>Consolidação com foco em aderência, consistência técnica e maturidade para decisão.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="sobre">
+        <div class="about-panel">
+          <div class="about-art" data-reveal>
+            <div class="monogram">GA</div>
+            <div class="about-badges">
+              <div class="about-badge">Consultora de inovação estratégica com atuação em políticas públicas e projetos de impacto.</div>
+              <div class="about-badge">Mentora em IA, laboratórios de inovação, integridade, gestão de pessoas e gamificação.</div>
+              <div class="about-badge">Avaliadora de projetos e negócios de base científica e tecnológica no Brasil e no exterior.</div>
+            </div>
+          </div>
+
+          <div class="about-copy" data-reveal style="--delay: 120ms;">
+            <span class="eyebrow">Sobre Gleice</span>
+            <h2>Experiência prática, visão sistêmica e leitura técnica.</h2>
+            <p>
+              Tenho mais de uma década de experiência em inovação estratégica, estruturação de projetos complexos e inteligência aplicada ao setor público.
+            </p>
+            <p>
+              Uno estratégia, IA e clareza executiva para transformar boas propostas em projetos mais claros, financiáveis e bem posicionados.
+            </p>
+            <div class="highlight-line">
+              <span class="highlight-tag">+R$ 10 milhões viabilizados</span>
+              <span class="highlight-tag">100+ projetos aprovados</span>
+              <span class="highlight-tag">Atuação em programas e bancas de inovação</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="cta-box" data-reveal>
+          <span class="eyebrow" style="margin: 0 auto; background: rgba(255,255,255,0.08); color: var(--color-cream); border-color: rgba(255,255,255,0.12);">Próximo passo</span>
+          <h2>Um bom projeto precisa ser claro desde o primeiro olhar.</h2>
+          <p>
+            Vamos transformar complexidade em clareza, direção estratégica e valor percebido — com uma comunicação simples, forte e bem posicionada.
+          </p>
+          <div class="cta-actions">
+            <a class="btn btn-light" href="https://wa.me/5567991173525" target="_blank" rel="noreferrer">Chamar no WhatsApp</a>
+            <a class="btn btn-dark-outline" href="#top">Voltar ao topo</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>© 2026 Gleice Aguilar · Estratégia de inovação financiável</div>
+      <div class="footer-links">
+        <a href="#desafios">Desafios</a>
+        <a href="#metodo">Método</a>
+        <a href="#sobre">Sobre</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const elements = document.querySelectorAll('[data-reveal]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
+
+    elements.forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
